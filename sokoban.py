@@ -8,7 +8,7 @@ import pygame
 import time
 import sys
 from Environment import Environment
-from Level import Level
+from Level import Level, NonexistentLevelException
 
 def drawLevel(matrix_to_draw):
 	
@@ -310,7 +310,11 @@ def movePlayer(direction,myLevel):
 def initLevel(level_set,level):
 	# Create an instance of this Level
 	global myLevel
-	myLevel = Level(level_set,level)
+	try:
+		myLevel = Level(level_set,level)
+	except NonexistentLevelException:
+		pygame.quit()
+		sys.exit()
 
 	# Draw this level
 	drawLevel(myLevel.getMatrix())

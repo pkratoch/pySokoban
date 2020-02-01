@@ -1,6 +1,9 @@
 import os
 import copy
 
+class NonexistentLevelException:
+	pass
+
 class Level:
 
 	matrix = []
@@ -12,9 +15,12 @@ class Level:
 		del self.matrix_history[:]
 		
 		# Create level
-		with open(os.path.dirname(os.path.abspath(__file__)) + '/levels/' + set + '/level' + str(level_num), 'r') as f:
-    			for row in f.read().splitlines():
+		try:
+			with open(os.path.dirname(os.path.abspath(__file__)) + '/levels/' + set + '/level' + str(level_num), 'r') as f:
+				for row in f.read().splitlines():
 					self.matrix.append(list(row))
+		except IOError:
+			raise NonexistentLevelException()
 			
 	def __del__(self):
 		"Destructor to make sure object shuts down, etc."
