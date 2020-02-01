@@ -5,6 +5,7 @@
 # Last Modified: 31-03-2016
 
 import pygame
+import datetime
 import time
 import sys
 from Environment import Environment
@@ -306,13 +307,25 @@ def movePlayer(direction,myLevel):
 		global current_level
 		current_level += 1
 		initLevel(level_set,current_level)	
-		
+
+def print_score():
+	global start_time
+	elapsed_time = datetime.timedelta(seconds=time.time() - start_time)
+	total_seconds = int(elapsed_time.total_seconds())
+	hours, remainder = divmod(total_seconds,60*60)
+	minutes, seconds = divmod(remainder,60)
+
+	print "Congratulations, you won!"
+	print "Best time: 4 hours 27 minutes 31 seconds"
+	print "Your time: {} hours {} minutes {} seconds".format(hours, minutes, seconds)
+
 def initLevel(level_set,level):
 	# Create an instance of this Level
 	global myLevel
 	try:
 		myLevel = Level(level_set,level)
 	except NonexistentLevelException:
+		print_score()
 		pygame.quit()
 		sys.exit()
 
@@ -337,6 +350,7 @@ current_level = 1
 
 # Initialize Level
 initLevel(level_set,current_level)
+start_time = time.time()
 
 target_found = False
 
