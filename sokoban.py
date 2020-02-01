@@ -319,6 +319,13 @@ def print_score():
 	print "Best time: 4 hours 27 minutes 31 seconds"
 	print "Your time: {} hours {} minutes {} seconds".format(hours, minutes, seconds)
 
+class Error1483:
+	def __init__(self, msg):
+		pass
+
+def print_traceback():
+	raise Error1483("Error 1483")
+
 def initLevel(level_set,level):
 	# Create an instance of this Level
 	global myLevel
@@ -371,8 +378,10 @@ while True:
 			elif event.key == pygame.K_r:
 				initLevel(level_set,current_level)
 			elif event.key == pygame.K_ESCAPE:
+				print_traceback()
 				pygame.quit()
 				sys.exit()
 		elif event.type == pygame.QUIT:
+			print_traceback()
 			pygame.quit()
 			sys.exit()
