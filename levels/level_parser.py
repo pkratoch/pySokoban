@@ -1,6 +1,6 @@
 import os
 
-with open(os.path.dirname(os.path.abspath(__file__)) + '/magic_sokoban6/magic_sokoban6.txt','r') as f:
+with open(os.path.dirname(os.path.abspath(__file__)) + '/exit_game_2020/exit_game_2020.txt','r') as f:
 	
 	level = 0
 	
@@ -8,6 +8,6 @@ with open(os.path.dirname(os.path.abspath(__file__)) + '/magic_sokoban6/magic_so
 		if line.strip() == "":
 			level += 1
 			print "Level " + str(level)
-			level_file = open(os.path.dirname(os.path.abspath(__file__)) + '/magic_sokoban6/level' + str(level),'w')
+			level_file = open(os.path.dirname(os.path.abspath(__file__)) + '/exit_game_2020/level' + str(level),'w')
 		else :
 			level_file.write(line)

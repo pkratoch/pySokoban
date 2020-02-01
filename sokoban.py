@@ -372,7 +372,7 @@ myEnvironment = Environment()
 theme = "default"
 
 # Choose a level set
-level_set = "original"
+level_set = "exit_game_2020"
 
 # Set the start Level
 current_level = 1
