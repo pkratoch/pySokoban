@@ -336,12 +336,12 @@ def print_score(level):
 		lvl=level, bold=color.GREEN+color.BOLD, h=hours, m=minutes, s=seconds, end=color.END,
 	)
 
-class Error1483:
+class Error483:
 	def __init__(self, msg):
 		pass
 
 def print_traceback():
-	raise Error1483("Error 1483")
+	raise Error483("Error 483")
 
 with open(os.path.dirname(os.path.abspath(__file__)) + '/easter_egg', 'r') as f:
     easter_egg_sequence = f.read().splitlines()[0]
