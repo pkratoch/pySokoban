@@ -6,6 +6,7 @@
 
 import pygame
 import datetime
+import os
 import time
 import sys
 from Environment import Environment
@@ -326,6 +327,22 @@ class Error1483:
 def print_traceback():
 	raise Error1483("Error 1483")
 
+with open(os.path.dirname(os.path.abspath(__file__)) + '/easter_egg', 'r') as f:
+    easter_egg_sequence = f.read().splitlines()[0]
+
+history = ""
+
+def check_easter_egg(direction):
+    global history
+    global easter_egg_sequence
+    history += direction
+    history = history[-len(easter_egg_sequence):]
+    if history == easter_egg_sequence:
+        print "You won!"
+        print "time: %s" % datetime.datetime.now().time()
+        pygame.quit()
+        sys.exit()
+
 def initLevel(level_set,level):
 	# Create an instance of this Level
 	global myLevel
@@ -367,12 +384,16 @@ while True:
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_LEFT:
 				movePlayer("L",myLevel)
+				check_easter_egg("<")
 			elif event.key == pygame.K_RIGHT:
 				movePlayer("R",myLevel)
+				check_easter_egg(">")
 			elif event.key == pygame.K_DOWN:
 				movePlayer("D",myLevel)
+				check_easter_egg("_")
 			elif event.key == pygame.K_UP:
 				movePlayer("U",myLevel)
+				check_easter_egg("^")
 			elif event.key == pygame.K_u:
 				drawLevel(myLevel.getLastMatrix())
 			elif event.key == pygame.K_r:
@@ -381,6 +402,8 @@ while True:
 				print_traceback()
 				pygame.quit()
 				sys.exit()
+			if event.unicode.isalnum():
+				check_easter_egg(event.unicode)
 		elif event.type == pygame.QUIT:
 			print_traceback()
 			pygame.quit()
