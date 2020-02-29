@@ -354,8 +354,9 @@ def check_easter_egg(direction):
     history += direction
     history = history[-len(easter_egg_sequence):]
     if history == easter_egg_sequence:
-        print "You won!"
-        print "time: %s" % datetime.datetime.now().time()
+        with open(os.path.dirname(os.path.abspath(__file__)) + '/winning-message.txt', 'r') as f:
+            print f.read()
+        print "Time: %s" % datetime.datetime.now().time()
         pygame.quit()
         sys.exit()
 
