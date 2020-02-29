@@ -306,19 +306,20 @@ def movePlayer(direction,myLevel):
 	if len(myLevel.getBoxes()) == 0:
 		myEnvironment.screen.fill((0, 0, 0))
 		global current_level
+		print_score(current_level)
 		current_level += 1
 		initLevel(level_set,current_level)	
 
-def print_score():
+def print_score(level):
 	global start_time
 	elapsed_time = datetime.timedelta(seconds=time.time() - start_time)
 	total_seconds = int(elapsed_time.total_seconds())
 	hours, remainder = divmod(total_seconds,60*60)
 	minutes, seconds = divmod(remainder,60)
 
-	print "Congratulations, you won!"
-	print "Best time: 4 hours 27 minutes 31 seconds"
-	print "Your time: {} hours {} minutes {} seconds".format(hours, minutes, seconds)
+	print "Best time for level {}: 4 hours 27 minutes 31 seconds".format(level)
+	print "Your time for level {}: {} hours {} minutes {} seconds".format(
+        level, hours, minutes, seconds)
 
 class Error1483:
 	def __init__(self, msg):
@@ -349,7 +350,6 @@ def initLevel(level_set,level):
 	try:
 		myLevel = Level(level_set,level)
 	except NonexistentLevelException:
-		print_score()
 		pygame.quit()
 		sys.exit()
 
