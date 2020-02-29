@@ -310,6 +310,18 @@ def movePlayer(direction,myLevel):
 		current_level += 1
 		initLevel(level_set,current_level)	
 
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+
 def print_score(level):
 	global start_time
 	elapsed_time = datetime.timedelta(seconds=time.time() - start_time)
@@ -317,9 +329,12 @@ def print_score(level):
 	hours, remainder = divmod(total_seconds,60*60)
 	minutes, seconds = divmod(remainder,60)
 
-	print "Best time for level {}: 4 hours 27 minutes 31 seconds".format(level)
-	print "Your time for level {}: {} hours {} minutes {} seconds".format(
-        level, hours, minutes, seconds)
+	print "Best time for level {lvl}: {bold}4 hours 27 minutes 31 seconds{end}".format(
+		lvl=level, bold=color.GREEN+color.BOLD, end=color.END,
+	)
+	print "Your time for level {lvl}: {bold}{h} hours {m} minutes {s} seconds{end}".format(
+		lvl=level, bold=color.GREEN+color.BOLD, h=hours, m=minutes, s=seconds, end=color.END,
+	)
 
 class Error1483:
 	def __init__(self, msg):
