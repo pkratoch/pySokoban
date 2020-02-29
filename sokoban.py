@@ -336,9 +336,9 @@ def print_score(level):
 		lvl=level, bold=color.GREEN+color.BOLD, h=hours, m=minutes, s=seconds, end=color.END,
 	)
 
-class Error483:
+class Error483(Exception):
 	def __init__(self, msg):
-		pass
+		super(Error483, self).__init__(color.RED + color.BOLD + msg + color.END)
 
 def print_traceback():
 	raise Error483("Error 483")
