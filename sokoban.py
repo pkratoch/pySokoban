@@ -424,3 +424,10 @@ while True:
 			print_traceback()
 			pygame.quit()
 			sys.exit()
+	else:
+		elapsed_time = datetime.timedelta(seconds=time.time() - start_time)
+		if elapsed_time >= datetime.timedelta(minutes=10):
+			print_traceback()
+			pygame.quit()
+			sys.exit()
+
