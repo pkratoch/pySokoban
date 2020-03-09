@@ -336,13 +336,6 @@ def print_score(level):
 		lvl=level, bold=color.GREEN+color.BOLD, h=hours, m=minutes, s=seconds, end=color.END,
 	)
 
-class Error483(Exception):
-	def __init__(self, msg):
-		super(Error483, self).__init__(color.RED + color.BOLD + msg + color.END)
-
-def print_traceback():
-	raise Error483("Error 483")
-
 with open(os.path.dirname(os.path.abspath(__file__)) + '/easter_egg', 'r') as f:
     easter_egg_sequence = f.read().splitlines()[0]
 
@@ -359,6 +352,13 @@ def check_easter_egg(direction):
         print "Time: %s" % datetime.datetime.now().time()
         pygame.quit()
         sys.exit()
+
+class Error361(Exception):
+	def __init__(self, msg):
+		super(Error361, self).__init__(color.RED + color.BOLD + msg + color.END)
+
+def print_traceback():
+	raise Error361("Error 361")
 
 def initLevel(level_set,level):
 	# Create an instance of this Level
